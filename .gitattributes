@@ -1,0 +1,5 @@
+/config.json filter=api_tokens
+
+# Add filters to your ~/.gitconfig or ./.git/config:
+# git config --global filter.api_tokens.clean 'sed -r '"'"'s@(^[\t ]+"consumer_key":[\t ]+")[^"]+(",?)@\1xxxxxxxxxxxxxxxxxxxxxxxxx\2@; s@(^[\t ]+"consumer_secret":[\t ]+")[^"]+(",?)@\1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\2@; s@(^[\t ]+"access_token":[\t ]+")[^"]+(",?)@\1xxxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\2 @; s@(^[\t ]+"access_token_secret":[\t ]+")[^"]+(",?)@\1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\2@;'"'"''
+

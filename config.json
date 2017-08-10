@@ -1,0 +1,31 @@
+{
+    "consumer_key": "xxxxxxxxxxxxxxxxxxxxxxxxx",
+    "consumer_secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+
+    "access_token": "xxxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 
+    "access_token_secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+
+    "request_interval": 3,
+    "request_window": 900,
+
+    "terms": [
+        "#infosec",
+        "#BugBounty",
+        "#IoT #security",
+        "#malware",
+        "#privacy",
+        "#BlockChain",
+        "#Docker",
+        "#0day",
+        "#security #data",
+        "#security #information",
+        "#redteam",
+        "#ShadowBrokers",
+        "#vulnerability",
+        "#pentest",
+        "#ransomware",
+        "#opsec"
+    ],
+    "tweets_count": 100
+}
+
