@@ -33,7 +33,7 @@ sleep       = timeSleep()
 def handleRequest(callback):
     while True:
         try:
-            yield callback.next()
+            return callback
         except tweepy.error.TweepError as e:
             if e.response is not None and e.response.status_code in set([429]):
                 sleep.sleepWindow()
