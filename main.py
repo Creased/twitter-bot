@@ -30,6 +30,18 @@ sleep       = timeSleep()
 # Functions
 #
 
+def handleRequest(callback):
+    while True:
+        try:
+            yield callback.next()
+        except tweepy.error.TweepError as e:
+            if e.response is not None and e.response.status_code in set([429]):
+                sleep.sleepWindow()
+            else:
+                # log.debug(e.response.__dict__)
+                log.debug(e.__dict__)
+        break
+
 def loadConfig(conf):
     log.success('Loading configurations from {file}'.format(file=args.config))
     config = dict()
@@ -67,15 +79,7 @@ def likeTweets(api, tweets):
 def searchTweets(api, term, limit=100, display=True):
     log.success('Gathering {count} tweet{s} containing \'{term}\''.format(count=limit, s='' if limit == 1 else 's', term=term))
 
-    try:
-        result = tweepy.Cursor(api.search, q=term).items(limit)
-    except tweepy.error.TweepError as e:
-        if e.response is not None and e.response.status_code in set([429]):
-            sleep.sleepWindow()
-        else:
-            # log.debug(e.response.__dict__)
-            log.debug(e)
-
+    result = handleRequest(tweepy.Cursor(api.search, q=term).items(limit))
     tweets = []
 
     if result:
@@ -95,15 +99,7 @@ def searchTweets(api, term, limit=100, display=True):
 def getFavorites(api, limit=100, display=True):
     log.success('Gathering favorites')
 
-    try:
-        result = tweepy.Cursor(api.favorites).items(limit)
-    except tweepy.error.TweepError as e:
-        if e.response is not None and e.response.status_code in set([429]):
-            sleep.sleepWindow()
-        else:
-            # log.debug(e.response.__dict__)
-            log.debug(e)
-
+    result = handleRequest(tweepy.Cursor(api.favorites).items(limit))
     tweets = []
 
     if result:
@@ -123,15 +119,7 @@ def getFavorites(api, limit=100, display=True):
 def getFollowers(api, limit=100, display=True):
     log.success('Gathering followers')
 
-    try:
-        result = tweepy.Cursor(api.followers).items(limit)
-    except tweepy.error.TweepError as e:
-        if e.response is not None and e.response.status_code in set([429]):
-            sleep.sleepWindow()
-        else:
-            # log.debug(e.response.__dict__)
-            log.debug(e)
-
+    result = handleRequest(tweepy.Cursor(api.followers).items(limit))
     users = []
 
     if result:
@@ -151,15 +139,7 @@ def getFollowers(api, limit=100, display=True):
 def getHomeTimeline(api, limit=100, display=True):
     log.success('Gathering home timeline')
 
-    try:
-        result = tweepy.Cursor(api.home_timeline).items(limit)
-    except tweepy.error.TweepError as e:
-        if e.response is not None and e.response.status_code in set([429]):
-            sleep.sleepWindow()
-        else:
-            # log.debug(e.response.__dict__)
-            log.debug(e)
-
+    result = handleRequest(tweepy.Cursor(api.home_timeline).items(limit))
     tweets = []
 
     if result:
