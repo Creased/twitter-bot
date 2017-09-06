@@ -1,6 +1,8 @@
 from sys import stderr
 
-__all__ = ["bold", "underline", "debug", "note", "info", "success",
+__all__ = ["bold", "underline",
+           "debug", "note",
+           "info", "success",
            "error", "warn"]
 
 colors = {
@@ -17,35 +19,86 @@ colors = {
     'white':     '\033[37m'
 }
 
-def bold(s):
-    if s:
-        print('{reset}{bold}{text}{reset}'.format(reset=colors['reset'], bold=colors['bold'], text=s))
+def bold(string):
+    """Print text with bold."""
+    if string:
+        print('{reset}{bold}{text}{reset}'.format(
+            reset=colors['reset'],
+            bold=colors['bold'],
+            text=string
+        ))
 
-def underline(s):
-    if s:
-        print('{reset}{bold}{underline}{text}{reset}'.format(reset=colors['reset'], bold=colors['bold'], underline=colors['underline'], text=s))
+def underline(string):
+    """Print text with underline."""
+    if string:
+        print('{reset}{bold}{underline}{text}{reset}'.format(
+            reset=colors['reset'],
+            bold=colors['bold'],
+            underline=colors['underline'],
+            text=string
+        ))
 
-def debug(s):
-    if s:
-        print('{reset}{bold}{cyan}Debug:{reset} {white}{text}{reset}'.format(reset=colors['reset'], bold=colors['bold'], cyan=colors['cyan'], white=colors['white'], text=s))
+def debug(string):
+    """Print debug text."""
+    if string:
+        print('{reset}{bold}{cyan}Debug:{reset} {white}{text}{reset}'.format(
+            reset=colors['reset'],
+            bold=colors['bold'],
+            cyan=colors['cyan'],
+            white=colors['white'],
+            text=string
+        ))
 
-def note(s):
-    if s:
-        print('{reset}{bold}{cyan}Note:{reset} {white}{text}{reset}'.format(reset=colors['reset'], bold=colors['bold'], cyan=colors['cyan'], white=colors['white'], text=s))
+def note(string):
+    """Print note text."""
+    if string:
+        print('{reset}{bold}{cyan}Note:{reset} {white}{text}{reset}'.format(
+            reset=colors['reset'],
+            bold=colors['bold'],
+            cyan=colors['cyan'],
+            white=colors['white'],
+            text=string
+        ))
 
-def info(s):
-    if s:
-        print('{reset}{bold}{white}\u279c{reset} {white}{text}{reset}'.format(reset=colors['reset'], bold=colors['bold'], white=colors['white'], text=s))
+def info(string):
+    """Print info text."""
+    if string:
+        print('{reset}{bold}{white}\u279c{reset} {white}{text}{reset}'.format(
+            reset=colors['reset'],
+            bold=colors['bold'],
+            white=colors['white'],
+            text=string
+        ))
 
-def success(s):
-    if s:
-        print('{reset}{bold}{white}[{green}+{white}]{reset} {white}{text}{reset}'.format(reset=colors['reset'], bold=colors['bold'], white=colors['white'], green=colors['green'], text=s))
+def success(string):
+    """Print success text."""
+    if string:
+        print('{reset}{bold}{white}[{green}+{white}]{reset} {white}{text}{reset}'.format(
+            reset=colors['reset'],
+            bold=colors['bold'],
+            white=colors['white'],
+            green=colors['green'],
+            text=string
+        ))
 
-def error(s):
-    if s:
-        print('{reset}{bold}{white}[{red}!{white}]{reset} {white}{text}{reset}'.format(reset=colors['reset'], bold=colors['bold'], white=colors['white'], red=colors['red'], text=s), file=stderr)
+def error(string):
+    """Print error text."""
+    if string:
+        print('{reset}{bold}{white}[{red}!{white}]{reset} {white}{text}{reset}'.format(
+            reset=colors['reset'],
+            bold=colors['bold'],
+            white=colors['white'],
+            red=colors['red'],
+            text=string
+        ), file=stderr)
 
-def warn(s):
-    if s:
-        print('{reset}{bold}{white}[{yellow}?{white}]{reset} {white}{text}{reset}'.format(reset=colors['reset'], bold=colors['bold'], white=colors['white'], yellow=colors['yellow'], text=s))
-
+def warn(string):
+    """Print warn text."""
+    if string:
+        print('{reset}{bold}{white}[{yellow}?{white}]{reset} {white}{text}{reset}'.format(
+            reset=colors['reset'],
+            bold=colors['bold'],
+            white=colors['white'],
+            yellow=colors['yellow'],
+            text=string
+        ))
